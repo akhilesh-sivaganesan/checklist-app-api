@@ -1,0 +1,8 @@
+applications:
+- name: backend
+  docker:
+    image: lmregistry.us.lmco.com/lmc.aero.prowat/checklist_app_api
+  disk_quota: 4G
+  routes:
+    - route: checklist_app_api.apps.pgw2.us.lmco.com
+  timeout: 600

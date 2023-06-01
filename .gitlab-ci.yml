@@ -5,7 +5,6 @@ variables:
   PROJECT_NAME: lmc.aero.prowat
   IMAGE_NAME : $PROJECT_NAME/checklist_app_api
   IMAGE_TAG: latest
-  REACT_APP_BACKEND_URL: "http://checklist_api.apps.pgw2.us.lmco.com"
 
 stages:
   - build
