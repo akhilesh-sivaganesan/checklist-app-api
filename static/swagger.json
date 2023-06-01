@@ -1,0 +1,84 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "My API",
+      "description": "A simple API for testing Swagger.",
+      "version": "1.0.0"
+    },
+    "basePath": "/api/v1",
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Get a list of users",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "type": "integer",
+              "description": "Maximum number of users to return"
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "type": "integer",
+              "description": "Offset of the first user in the list"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "User ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "User name"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User email address"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request parameters"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "apiKey": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "security": [
+      {
+        "apiKey": []
+      }
+    ]
+  }
+  
