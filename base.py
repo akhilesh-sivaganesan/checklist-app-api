@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask import jsonify, request
 import os
 import sqlalchemy
 from sqlalchemy.sql import text
 from flask_cors import CORS, cross_origin
+from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -19,6 +20,21 @@ port = '5432'
 engine = sqlalchemy.create_engine(f'postgresql://{username}:{password}@{host}:{port}/{database}')
 con = engine.connect()
 
+SWAGGER_URL = '/swagger'
+API_URL = '/swagger.json'
+
+swagger_ui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': 'My API'
+    }
+)
+app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
+
+@app.route('/swagger.json')
+def swagger():
+    return send_from_directory('static', 'swagger.json')
 
 @app.route('/', methods=['GET'])
 @cross_origin()
