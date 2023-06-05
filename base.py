@@ -58,7 +58,7 @@ def handle_forms():
 @cross_origin()
 def create_form_template():
     data = request.get_json(force=True)
-    insert_query = text("INSERT INTO osf_public.templates (template_id, template_title, template_owner_id, created_at) VALUES ('% s', '% s', '% s', '% s');" % (data['template_id'], data['template_title'], data['template_owner_id'], data['template_created_at']))
+    insert_query = text("INSERT INTO osf_public.templates (template_id, template_title, template_owner_id, template_created_at) VALUES ('% s', '% s', '% s', '% s');" % (data['template_id'], data['template_title'], data['template_owner_id'], data['template_created_at']))
     con.execute(insert_query)
 
     for ditem in data['template_nodes']:
